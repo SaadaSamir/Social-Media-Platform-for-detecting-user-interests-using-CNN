@@ -1,0 +1,50 @@
+.form-control:focus{
+    box-shadow: 0 0 0 0.1rem rgba(40,167,69,.25);
+    border-color: blueviolet;
+}
+.btn, .btn:focus, .btn:active{
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+.btn{
+    color: white;
+    background-color: blueviolet !important;
+    border-color: blueviolet!important;
+    border-radius: 999px;
+    width: 95%;
+}
+.btn:hover, .btn:active, .btn:focus{
+    background-color: blueviolet !important;
+    border-color: blueviolet !important;
+}
+.star{
+    color: red;
+}
+
+.user-box{
+    width: 45%;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 30px;
+    margin-top: 25vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 50px 10px 50px;
+}
+
+.user-box form > div{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.custom-file-label{
+    overflow: hidden;
+}
+
+.small{
+    font-size: small;
+}
+body {
+    background-image: url("pexels-stephan-seeber-1261728.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

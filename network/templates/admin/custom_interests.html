@@ -1,0 +1,227 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>EVOLNEURON Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/body.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/pkr.css' %}">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<body>
+<input type="checkbox" id="menu-toggle">
+<div class="sidebar">
+    <div class="side-header">
+        <h3>E<span>VOLNEURON</span></h3>
+    </div>
+    
+    <div class="side-content">
+        <div class="side-menu">
+            <ul>
+                <li>
+                   <a href="{% url 'homeadmin' %}">
+                        <span class="las la-home"></span>
+                        <small>Dashboard</small>
+                    </a>
+                </li>
+                <li>
+                   <a href="{% url 'intersts' %}" class = "active">
+                        <span class="las la-clipboard-list"></span>
+                        <small>User Activity</small>
+                    </a>
+                </li>
+                <li>
+                   <a href="{% url 'enrich' %}">
+                        <span class="las la-tasks"></span>
+                        <small>Evolve</small>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+    
+    <header>
+        <div class="header-content">
+            <label for="menu-toggle">
+                <span class="las la-bars" style='color:white'></span>
+            </label>
+            
+            <div class="header-menu">
+                
+                <div class="user">
+                  <div class="bg-img"></div>
+                  <a href="{% url 'logout' %}" class="nav-link">
+                    <span class="las la-power-off" style='color:white'></span>
+                    <span style='color:white'>Logout</span>
+                  </a>
+                </div>
+                
+            </div>
+        </div>
+    </header>           
+    <main>
+            
+        <div class="page-header">
+            <h1>User Activity </h1><br>
+            <small><a href="{% url 'homeadmin' %}" style='color:white'>Home</a> / <span style="color:blueviolet">User Activity</span></small>
+        </div>
+        </main>       
+
+        {% block content %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover" style="background-color : transparent">
+                        <thead>
+                            <tr style="justify-content: center">
+                                <th style="color: white; text-align: center;"><h3>Username</h3></th>
+                                <th style="color: white; text-align: center;"><h3>Interests</h3></th>
+                                <th style="color: white; text-align: center;"><h3>Number of interaction</h3></th>
+                                <th style="color: white; text-align: center;"> <h3>Date</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for interests in interests %}
+                                <tr style="justify-content: center">
+                                    <td style=" justify-content: center; align-items: center;">
+                                        <div class="client">
+                                            <div class="client-img bg-img" style="background-image: url({{ interests.user.profile_pic.url }})"></div>
+                                            <div class="client-info">
+                                                <h4 style="text-align: center; color: white;">{{ interests.user.first_name }} {{ interests.user.last_name }}</h4>
+                                                <small style="text-align: center;">{{ interests.user.email }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    <td style='color:white'>{{ interests.content_txt }}</td>
+                                    <td style='color:white'>{{ interests.count }}</td>
+                                    <td style='color:white'>{{ interests.date|date:"Y/m/d H:i:s" }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+      </body>
+    <style>
+        
+
+        
+        .container-fluid {
+          max-width: 960px;
+          margin: 0 auto;
+          padding: 50px 20px;
+        }
+
+        
+        table {
+          width: 100%;
+          max-width: 900px;
+          margin: 0 auto;
+          background-color: #fff;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+          border-collapse: collapse;
+        }
+        th.header-text {
+            font-size: 24px;
+          }
+        
+        th, td {
+          padding: 15px;
+          text-align: left;
+          vertical-align: middle;
+          border-bottom: 1px solid #ddd;
+          font-weight: 400;
+          font-size: 18px;
+        }
+        
+        th {
+          font-weight: bold;
+          background-color: #1132c3cb;
+        }
+        
+        /* Dark mode */
+        body.dark-mode {
+          background-color: #333;
+          color: #fff;
+        }
+        
+        table.dark-mode {
+          background-color: #444;
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        th.dark-mode {
+          background-color: #555;
+          color: #fff;
+          border-bottom: 1px solid #666;
+        }
+        
+        td.dark-mode {
+          border-bottom: 1px solid #666;
+        }
+        
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
+          table {
+            font-size: 14px;
+          }
+          
+          th, td {
+            padding: 10px;
+          }
+          
+
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+          }
+          
+          th {
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #343a40;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #dee2e6;
+          }
+          
+          td {
+            font-size: 16px;
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #dee2e6;
+          }
+          
+          
+          tr:hover {
+            background-color: rgba(18,18,18,0.5);
+          }
+          
+           
+    </style>
+    <script>
+        // get all links in the navbar
+        const links = document.querySelectorAll(".side-menu a");
+    
+        // add click event listener to each link
+        links.forEach(link => {
+            link.addEventListener("click", function() {
+                // remove the active class from all links
+                links.forEach(link => link.classList.remove("active"));
+    
+                // add the active class to the clicked link
+                this.classList.add("active");
+            });
+        });
+    </script>
+{% endblock %}
